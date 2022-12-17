@@ -13,13 +13,16 @@ export class Main extends React.Component {
 
   componentDidMount() {
     fetch(
-      `http://www.omdbapi.com/?apikey=${API_KEY}&s=transformers`
+      `https://www.omdbapi.com/?apikey=${API_KEY}&s=transformers`
     )
       .then((response) => response.json())
       .then((data) =>
         this.setState({
           movies: data.Search,
           loading: false,
+        }).catch((err) => {
+          console.error(err);
+          this.setState({ loading: false });
         })
       );
   }
@@ -28,7 +31,7 @@ export class Main extends React.Component {
     this.setState({ loading: true });
 
     fetch(
-      `http://www.omdbapi.com/?apikey=${API_KEY}&s=${film}${
+      `https://www.omdbapi.com/?apikey=${API_KEY}&s=${film}${
         filter !== 'all' ? `&type=${filter}` : ''
       }`
     )
@@ -37,6 +40,9 @@ export class Main extends React.Component {
         this.setState({
           movies: data.Search,
           loading: false,
+        }).catch((err) => {
+          console.error(err);
+          this.setState({ loading: false });
         })
       );
   };
