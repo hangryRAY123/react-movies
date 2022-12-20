@@ -26,6 +26,16 @@ nav {
   color: black;
 }
 
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card .card-title {
+  display: block;
+}
+
 .movies {
   display: grid;
   grid-template-columns: repeat(
@@ -44,4 +54,9 @@ nav {
 .radio {
   display: flex;
   justify-content: space-evenly;
+}
+
+.card .card-img {
+  height: 400px;
+  object-fit: contain;
 }

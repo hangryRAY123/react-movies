@@ -10,7 +10,7 @@ export const Movies = (props) => {
           <Movie key={movie.imdbID} {...movie} />
         ))
       ) : (
-        <h4>Nothing foud</h4>
+        <h4>Nothing found</h4>
       )}
     </div>
   );

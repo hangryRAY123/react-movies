@@ -15,7 +15,11 @@ export const Movie = (props) => {
             alt={title}
           />
         ) : (
-          <img src={poster} alt={title} />
+          <img
+            className='card-img'
+            src={poster}
+            alt={title}
+          />
         )}
         <span className='card-title'>{title}</span>
       </div>

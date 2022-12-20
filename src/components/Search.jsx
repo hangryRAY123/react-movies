@@ -2,7 +2,7 @@ import React from 'react';
 
 export class Search extends React.Component {
   state = {
-    search: '',
+    search: 'transformers',
     filter: 'all',
   };
 
@@ -42,6 +42,7 @@ export class Search extends React.Component {
               this.setState({ search: e.target.value })
             }
             onKeyDown={this.handleKey}
+            onFocus={() => this.setState({ search: '' })}
           />
           <button
             className='btn search-btn'
@@ -89,6 +90,18 @@ export class Search extends React.Component {
                   checked={this.state.filter === 'series'}
                 />
                 <span>Series only</span>
+              </label>
+            </p>
+            <p>
+              <label>
+                <input
+                  name='filter'
+                  type='radio'
+                  value='game'
+                  onChange={this.handleChange}
+                  checked={this.state.filter === 'game'}
+                />
+                <span>Game only</span>
               </label>
             </p>
           </div>

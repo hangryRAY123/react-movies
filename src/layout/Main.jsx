@@ -9,6 +9,7 @@ export class Main extends React.Component {
   state = {
     movies: [],
     loading: true,
+    disabled: true,
   };
 
   componentDidMount() {
