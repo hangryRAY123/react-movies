@@ -1,112 +1,93 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-export class Search extends React.Component {
-  state = {
-    search: 'transformers',
-    filter: 'all',
-  };
+export const Search = (props) => {
+  const { searchMovies = Function.prototype } = props;
 
-  handleKey = (evt) => {
+  const [search, setSearch] = useState('');
+  const [filter, setFilter] = useState('all');
+
+  const handleKey = (evt) => {
     if (evt.key === 'Enter') {
-      this.props.search(
-        this.state.search,
-        this.state.filter
-      );
+      searchMovies(search, setFilter('all'));
     }
   };
 
-  handleChange = (evt) => {
-    this.setState(
-      () => ({
-        filter: evt.target.value,
-      }),
-      () => {
-        this.props.search(
-          this.state.search,
-          this.state.filter
-        );
-      }
-    );
+  const handleChange = (evt) => {
+    setFilter(evt.target.value);
+    searchMovies(search, evt.target.value);
   };
 
-  render() {
-    return (
-      <div className='row'>
-        <div className='input-field col s12'>
-          <input
-            placeholder='Search'
-            type='search'
-            className='validate'
-            value={this.state.search}
-            onChange={(e) =>
-              this.setState({ search: e.target.value })
-            }
-            onKeyDown={this.handleKey}
-            onFocus={() => this.setState({ search: '' })}
-          />
-          <button
-            className='btn search-btn'
-            onClick={() =>
-              this.props.search(
-                this.state.search,
-                this.state.filter
-              )
-            }
-          >
-            Search
-          </button>
-          <div className='radio'>
-            <p>
-              <label>
-                <input
-                  name='filter'
-                  type='radio'
-                  value='all'
-                  onChange={this.handleChange}
-                  checked={this.state.filter === 'all'}
-                />
-                <span>All</span>
-              </label>
-            </p>
-            <p>
-              <label>
-                <input
-                  name='filter'
-                  type='radio'
-                  value='movie'
-                  onChange={this.handleChange}
-                  checked={this.state.filter === 'movie'}
-                />
-                <span>Movies only</span>
-              </label>
-            </p>
-            <p>
-              <label>
-                <input
-                  name='filter'
-                  type='radio'
-                  value='series'
-                  onChange={this.handleChange}
-                  checked={this.state.filter === 'series'}
-                />
-                <span>Series only</span>
-              </label>
-            </p>
-            <p>
-              <label>
-                <input
-                  name='filter'
-                  type='radio'
-                  value='game'
-                  onChange={this.handleChange}
-                  checked={this.state.filter === 'game'}
-                />
-                <span>Game only</span>
-              </label>
-            </p>
-          </div>
+  return (
+    <div className='row'>
+      <div className='input-field col s12'>
+        <input
+          placeholder='Search'
+          type='search'
+          className='validate'
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          onKeyDown={handleKey}
+          onFocus={() => setSearch('')}
+        />
+        <button
+          className='btn search-btn'
+          onClick={() =>
+            searchMovies(search, setFilter('all'))
+          }
+        >
+          Search
+        </button>
+        <div className='radio'>
+          <p>
+            <label>
+              <input
+                name='filter'
+                type='radio'
+                value='all'
+                onChange={handleChange}
+                checked={filter === 'all'}
+              />
+              <span>All</span>
+            </label>
+          </p>
+          <p>
+            <label>
+              <input
+                name='filter'
+                type='radio'
+                value='movie'
+                onChange={handleChange}
+                checked={filter === 'movie'}
+              />
+              <span>Movies only</span>
+            </label>
+          </p>
+          <p>
+            <label>
+              <input
+                name='filter'
+                type='radio'
+                value='series'
+                onChange={handleChange}
+                checked={filter === 'series'}
+              />
+              <span>Series only</span>
+            </label>
+          </p>
+          <p>
+            <label>
+              <input
+                name='filter'
+                type='radio'
+                value='game'
+                onChange={handleChange}
+                checked={filter === 'game'}
+              />
+              <span>Game only</span>
+            </label>
+          </p>
         </div>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};

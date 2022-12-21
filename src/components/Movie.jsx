@@ -11,7 +11,7 @@ export const Movie = (props) => {
       <div className='card-image'>
         {poster === 'N/A' ? (
           <img
-            src={`https://via.placeholder.com/300x400?text=${title}`}
+            src={`https://via.placeholder.com/300x390?text=${title}`}
             alt={title}
           />
         ) : (
