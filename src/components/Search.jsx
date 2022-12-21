@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 export const Search = (props) => {
   const { searchMovies = Function.prototype } = props;
 
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState('transformers');
   const [filter, setFilter] = useState('all');
 
   const handleKey = (evt) => {
