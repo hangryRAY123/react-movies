@@ -3,13 +3,20 @@ import React, { useState } from 'react';
 export const Search = (props) => {
   const { searchMovies = Function.prototype } = props;
 
-  const [search, setSearch] = useState('transformers');
+  const [search, setSearch] = useState('');
   const [filter, setFilter] = useState('all');
+  const [disabled, setDisabled] = useState(true);
 
   const handleKey = (evt) => {
     if (evt.key === 'Enter') {
       searchMovies(search, setFilter('all'));
+      setDisabled(false);
     }
+  };
+
+  const handleClick = () => {
+    searchMovies(search, setFilter('all'));
+    setDisabled(false);
   };
 
   const handleChange = (evt) => {
@@ -31,9 +38,7 @@ export const Search = (props) => {
         />
         <button
           className='btn search-btn'
-          onClick={() =>
-            searchMovies(search, setFilter('all'))
-          }
+          onClick={handleClick}
         >
           Search
         </button>
@@ -46,6 +51,7 @@ export const Search = (props) => {
                 value='all'
                 onChange={handleChange}
                 checked={filter === 'all'}
+                disabled={disabled}
               />
               <span>All</span>
             </label>
@@ -58,6 +64,7 @@ export const Search = (props) => {
                 value='movie'
                 onChange={handleChange}
                 checked={filter === 'movie'}
+                disabled={disabled}
               />
               <span>Movies only</span>
             </label>
@@ -70,6 +77,7 @@ export const Search = (props) => {
                 value='series'
                 onChange={handleChange}
                 checked={filter === 'series'}
+                disabled={disabled}
               />
               <span>Series only</span>
             </label>
@@ -82,6 +90,7 @@ export const Search = (props) => {
                 value='game'
                 onChange={handleChange}
                 checked={filter === 'game'}
+                disabled={disabled}
               />
               <span>Game only</span>
             </label>
